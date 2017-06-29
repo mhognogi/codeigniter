@@ -58,5 +58,7 @@ $config['base_url'] = 'http://localhost';
 //add css and js
 //edit application/config/config.php
 $config['base_url'] = '' to $config['base_url'] = 'http://youtRootSite/';
+and local: echo base_url
+
 
 
