@@ -1,0 +1,54 @@
+//remove index.php in url
+//change in config.php 
+$config['index_page'] = "index.php" to $config['index_page'] = ""
+//.htaccess together application and system
+RewriteEngine on
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
+
+//create page 
+//application/config/autoload
+$autoload['libraries'] = array() to $autoload['libraries'] = array('database');
+//application/views/home.php
+echo $var."<br>";
+var_dump($res);
+//application/controller/Home.php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Home extends CI_Controller
+{
+    public function index()
+    {
+        $data['var'] = 'variabila';
+        $this->load->model('HomeM');
+        $data['res'] = $this->HomeM->getData();
+        $this->load->view('home', $data);
+    }
+    public function test()
+    {
+        echo 'test controller';
+    }
+}
+//application/model/HomeM.php
+class HomeM extends CI_Model
+{
+    public function getData()
+    {
+        $query = $this->db->get('user');
+        return $query->result();
+    }
+}
+//application/view/home.php
+echo $var."<br>";
+var_dump($res);
+
+//In browser appear
+http://localhost/Home
+variabila
+array(1) { [0]=> object(stdClass)#19 (4) { ["id"]=> string(1) "1" ["user"]=> string(6) "wetfre" ["pass"]=> string(5) "qwegv" ["level"]=> string(1) "1" } }
+http://localhost/Home/test
+test controller
+
+
