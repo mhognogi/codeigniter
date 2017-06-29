@@ -1,7 +1,6 @@
-//remove index.php in url
-//change in config.php 
+//for remove index.php in url need to edit in config.php 
 $config['index_page'] = "index.php" to $config['index_page'] = ""
-//.htaccess together application and system
+//and edit in .htaccess together application and system
 RewriteEngine on
 RewriteCond $1 !^(index\.php|resources|robots\.txt)
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -9,7 +8,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
 
 
-//create page 
+//create page home
 //application/config/autoload
 $autoload['libraries'] = array() to $autoload['libraries'] = array('database');
 //application/views/home.php
@@ -50,5 +49,10 @@ variabila
 array(1) { [0]=> object(stdClass)#19 (4) { ["id"]=> string(1) "1" ["user"]=> string(6) "wetfre" ["pass"]=> string(5) "qwegv" ["level"]=> string(1) "1" } }
 http://localhost/Home/test
 test controller
+
+//LOCALHOST
+//no .htaccess in root site
+//application/config.php
+$config['base_url'] = 'http://localhost';
 
 
